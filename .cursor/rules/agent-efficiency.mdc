@@ -1,0 +1,20 @@
+---
+description: Scoped work, no extra tests, commits only when asked
+alwaysApply: true
+---
+
+# Agent efficiency
+
+Inspect only relevant files. Smallest complete change. Changed-file diagnostics, not suites. No drive-by refactors, todo lists for 1–2 steps, or subagents unless the search is broad or the user asked.
+
+## Tests and git
+
+Do not write or run tests unless the user asks. Do not commit, push, or open a PR unless the user asks.
+
+## Dependencies
+
+Host and local builds use Node **>= 22.18**. Do not regenerate a lockfile with a different major. Do not read a lockfile end to end — `npm ls` or grep a package key.
+
+If `package.json` scripts exist, typecheck or build only what the change touched. Do not invent CI jobs.
+
+Keep progress silent except blockers.

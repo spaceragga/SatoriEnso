@@ -1,0 +1,36 @@
+---
+description: Keep files small — extract named units next to their feature
+globs: "{app,components,content,lib}/**/*.{ts,tsx}"
+alwaysApply: false
+---
+
+# File decomposition
+
+Extract a named unit into its own file when a module gets hard to read. Do not split glue.
+
+## Extract when
+
+- The file is past ~150–200 lines or has 2+ unrelated concerns
+- A pure helper, mapper, or formatter has a clear name
+- Non-trivial React state belongs in a colocated `use-*.ts`
+
+## Do not extract when
+
+- 5–15 lines used once next to the only caller
+- A one-liner that only adds a jump
+- “Future reuse” with a single call site
+
+| Kind | Where |
+|------|--------|
+| UI primitive | `components/ui/` |
+| Section or hook | next to the feature |
+| Copy, prices, cases | `content/<name>.ts` |
+| Shared helper | `lib/<name>.ts` |
+
+```ts
+// ❌ BAD — page.tsx owns prices, case art, and the lead form
+// ✅ GOOD — content/services.ts + ServiceList.tsx; the page composes them
+```
+
+- File name says what it does (`format-price.ts`, not `helpers2.ts`)
+- No catch-all `utils.ts`. A second theme in a helper file means split it
