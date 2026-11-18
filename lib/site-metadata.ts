@@ -1,11 +1,6 @@
 import type { Metadata } from 'next';
-import {
-  localePath,
-  locales,
-  messages,
-  siteName,
-  type Locale,
-} from '@/content/messages';
+import { localePath, locales, type Locale } from '@/content/locale';
+import { messages, siteName } from '@/content/messages';
 
 export function siteMetadata(locale: Locale): Metadata {
   return {

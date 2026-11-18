@@ -1,14 +1,10 @@
 import type { ReactNode } from 'react';
-import { RootDocument } from '@/components/root-document';
+import { LocaleShell } from '@/components/locale-shell';
 import { siteMetadata } from '@/lib/site-metadata';
 import '../globals.css';
 
 export const metadata = siteMetadata('ru');
 
-type LocaleLayoutProps = {
-  children: ReactNode;
-};
-
-export default function RussianLayout({ children }: LocaleLayoutProps) {
-  return <RootDocument locale="ru">{children}</RootDocument>;
+export default function RussianLayout({ children }: { children: ReactNode }) {
+  return <LocaleShell locale="ru">{children}</LocaleShell>;
 }

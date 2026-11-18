@@ -1,4 +1,5 @@
-import { siteName, messages, type Locale } from '@/content/messages';
+import type { Locale } from '@/content/locale';
+import { messages, siteName } from '@/content/messages';
 
 type HomePageProps = {
   locale: Locale;

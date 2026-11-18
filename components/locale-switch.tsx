@@ -1,5 +1,6 @@
 import Link from 'next/link';
-import { localePath, locales, messages, type Locale } from '@/content/messages';
+import { localePath, locales, type Locale } from '@/content/locale';
+import { messages } from '@/content/messages';
 
 type LocaleSwitchProps = {
   locale: Locale;

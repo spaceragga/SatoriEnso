@@ -1,14 +1,10 @@
 import type { ReactNode } from 'react';
-import { RootDocument } from '@/components/root-document';
+import { LocaleShell } from '@/components/locale-shell';
 import { siteMetadata } from '@/lib/site-metadata';
 import '../globals.css';
 
 export const metadata = siteMetadata('en');
 
-type LocaleLayoutProps = {
-  children: ReactNode;
-};
-
-export default function EnglishLayout({ children }: LocaleLayoutProps) {
-  return <RootDocument locale="en">{children}</RootDocument>;
+export default function EnglishLayout({ children }: { children: ReactNode }) {
+  return <LocaleShell locale="en">{children}</LocaleShell>;
 }
