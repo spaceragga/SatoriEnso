@@ -1,0 +1,30 @@
+---
+description: SOLID, DRY, KISS, SoC, YAGNI for the studio site
+globs: "{app,components,content,lib}/**/*.{ts,tsx}"
+alwaysApply: false
+---
+
+# Architecture principles
+
+Prefer clarity over cleverness. The site is a static brochure that can grow.
+
+| Principle | Meaning here |
+|-----------|----------------|
+| **SoC** | Pages compose. Content ≠ presentation ≠ the lead script. |
+| **DRY** | Share a real duplicate (a price, a button). Do not abstract after one use. |
+| **KISS** | Smallest design that works. No app framework inside the site. |
+| **YAGNI** | No CMS, accounts, i18n layer, or API until the product needs them. |
+| **SOLID** | One responsibility per module. UI does not own mail or secrets. |
+
+- Composition over inheritance
+- Fail at the edge — validate the lead form in PHP; never trust the browser
+- No silent failure — a failed send tells the person what happened
+- No secrets in client code
+
+```tsx
+// ❌ BAD — page hardcodes prices, fetch, and layout in one file
+// ✅ GOOD — page lays out sections; copy and prices come from content/
+```
+
+- Delete dead code in the same change. No `tmp`, commented-out blocks, or unused exports
+- Readable first. Optimize a measured hot path only

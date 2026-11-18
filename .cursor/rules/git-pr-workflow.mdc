@@ -1,0 +1,37 @@
+---
+description: Implement first; commit and PR only when asked
+alwaysApply: true
+---
+
+# Git — implement first, PR only on request
+
+The user owns `main`. Never land work there. Never merge PRs.
+
+## Default
+
+Implement. Leave **uncommitted**. No `commit` / `push` / `gh pr create` until asked. “PR” means open one, not merge.
+
+## Commit
+
+Conventional Commits (English) and push immediately. No PR unless asked. If a PR is already open, edit the title and body for **every** commit on the branch.
+
+## PR
+
+1. Branch off `main` (`feat/…` / `fix/…` / `docs/…`). Not on `main`. One concern per PR.
+2. Commit, push, open a PR whose body covers all commits.
+3. There is no CI yet. Do not invent jobs. If a check exists and fails, read the failing hunk and fix it. Do not watch a green run.
+4. Stop. Give the PR URL.
+
+Later commits: push and refresh the PR body.
+
+## `main` updates
+
+Fetch and **merge** `origin/main` into the PR head, then push. No rebase, no force. Conflicts: stop and say so. Do not fast-forward local `main` unless asked.
+
+## Never
+
+Unprompted commit, push, or PR (except merging `origin/main` into an open PR head). No push to `main`. No `gh pr merge`. No force-push to `main`.
+
+## After they merge
+
+Do not recreate the deleted head. `git fetch --prune` and delete the local branch if it remains.

@@ -1,0 +1,23 @@
+---
+description: Code comments are English; UI copy stays Russian
+globs: "**/*.{ts,tsx,js,jsx,mjs,cjs,css,php}"
+alwaysApply: false
+---
+
+# English-only code comments
+
+Comments in source are **English**. User-facing copy stays Russian.
+
+- English for `//`, `/* */`, JSX comments, CSS comments, and JSDoc
+- A comment says **why**, not the obvious what
+- When editing a file, translate a non-English comment instead of leaving it
+
+```typescript
+// ❌ BAD
+// Отправляем заявку на почту
+mail($to, $subject, $body);
+
+// ✅ GOOD
+// mail() is already running on shared hosting; no Node process for one form
+mail($to, $subject, $body);
+```

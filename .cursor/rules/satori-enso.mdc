@@ -1,0 +1,32 @@
+---
+description: Satori Enso studio site — stack, hosting, and boundaries
+alwaysApply: true
+---
+
+# Satori Enso — agent context
+
+Marketing site for a one-person web studio (Belarus, Russian copy). Node **>= 22.18**.
+
+## Stack
+
+- Next.js 16 (App Router) + React 19 + TypeScript + Tailwind CSS 4
+- Static export: `output: 'export'`, `trailingSlash: true`
+- Content lives in TypeScript modules in the repo. No CMS, no database
+- UI copy is Russian. No next-intl until a second locale is actually added
+- Images are precompressed (AVIF/WebP) with width and height. The default `next/image` optimizer is off
+- Fonts via `next/font` (Cyrillic subset), self-hosted at build time
+
+## Hosting
+
+hoster.by Unix shared hosting. Build locally, upload `out/` to the site root. HTTPS redirect is the panel's job.
+
+Do not add a Node server, VPS, Docker, or `next start`. Static export cannot use Server Actions, request-bound Route Handlers, cookies, or `next.config` redirects.
+
+A lead form, when one is built, is a normal `<form method="post">` to `public/api/lead.php` (`mail()`). Secrets stay above the web root and out of git. Do not put mail or Telegram tokens in client JavaScript.
+
+## Boundaries
+
+- Pages compose sections. Prices and service facts come from content modules
+- No secrets in client code
+- Format with Prettier. Do not hand-format against it
+- Keep changes scoped
