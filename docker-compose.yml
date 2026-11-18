@@ -1,0 +1,24 @@
+name: satori-enso
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    environment:
+      NODE_ENV: development
+      # Windows bind mounts do not notify inotify. webpack watchOptions polls instead.
+      WATCHPACK_POLLING: 'true'
+    # Tailwind's PostCSS config is picked up by webpack. Turbopack in this image does not.
+    command: npm run dev -- --webpack
+    ports:
+      - '${WEB_PORT:-3010}:3000'
+    volumes:
+      - .:/workspace
+      - web_node_modules:/workspace/node_modules
+      - web_next:/workspace/.next
+
+volumes:
+  web_node_modules:
+  web_next:

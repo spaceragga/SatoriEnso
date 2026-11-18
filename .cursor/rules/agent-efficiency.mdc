@@ -13,8 +13,8 @@ Do not write or run tests unless the user asks. Do not commit, push, or open a P
 
 ## Dependencies
 
-Host and local builds use Node **>= 22.18**. Do not regenerate a lockfile with a different major. Do not read a lockfile end to end — `npm ls` or grep a package key.
+Host installs and lockfile edits use Node **22.18** (nvm). The default shell may be Node 20 — do not `npm install` with it. Do not read a lockfile end to end — `npm ls` or grep a package key.
 
-If `package.json` scripts exist, typecheck or build only what the change touched. Do not invent CI jobs.
+If `package.json` scripts exist, typecheck or build only what the change touched. The running dev site is http://localhost:3010. Do not invent CI jobs. Ignore `.history/`.
 
 Keep progress silent except blockers.
