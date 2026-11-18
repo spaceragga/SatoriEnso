@@ -13,7 +13,7 @@ Prefer clarity over cleverness. The site is a static brochure that can grow.
 | **SoC** | Pages compose. Content ≠ presentation ≠ the lead script. |
 | **DRY** | Share a real duplicate (a price, a button). Do not abstract after one use. |
 | **KISS** | Smallest design that works. No app framework inside the site. |
-| **YAGNI** | No CMS, accounts, i18n layer, or API until the product needs them. |
+| **YAGNI** | No CMS, accounts, or API until the product needs them. Locales are the typed catalog in `content/messages.ts`, not a library. |
 | **SOLID** | One responsibility per module. UI does not own mail or secrets. |
 
 - Composition over inheritance
