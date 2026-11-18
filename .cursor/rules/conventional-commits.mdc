@@ -14,5 +14,5 @@ Use only when the user asks for a commit.
 - Types: `feat`, `fix`, `refactor`, `docs`, `chore`, `build`, `perf`, `style`, `revert`.
 - Imperative summary, lowercase after the type, no trailing period, about 72 characters.
 - Body explains why, not a file list.
-- Scope only when useful: `web`, `content`, `agent`.
+- Scope only when useful: `web`, `content`, `docker`, `agent`.
 - One concern per commit.

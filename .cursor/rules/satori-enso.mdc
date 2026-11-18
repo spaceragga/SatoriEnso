@@ -15,12 +15,20 @@ Marketing site for a one-person web studio (Belarus, Russian copy). Node **>= 22
 - UI copy is Russian. No next-intl until a second locale is actually added
 - Images are precompressed (AVIF/WebP) with width and height. The default `next/image` optimizer is off
 - Fonts via `next/font` (Cyrillic subset), self-hosted at build time
+- UI copy is Russian. README, rules, and commit messages are English
+- Keep the `magic-string` override. Tailwind's Node bundle `require()`s it; newer magic-string is ESM-only and breaks `next build`
+
+## Local dev
+
+`docker compose up --build` starts project `satori-enso` (its own group in Docker Desktop). The web container runs `next dev --webpack` with polling, because Windows bind mounts do not emit file events. The repo is mounted; `node_modules` and `.next` stay in named volumes (Linux binaries, not the Windows host install). Host port is `WEB_PORT` (default 3010). Do not also run `npm run dev` on the host — that binds 3000, which Nechto already uses.
+
+Install and lockfile edits need Node **22.18**. The default shell may be Node 20. Production is still the static `out/` upload, not this container.
 
 ## Hosting
 
 hoster.by Unix shared hosting. Build locally, upload `out/` to the site root. HTTPS redirect is the panel's job.
 
-Do not add a Node server, VPS, Docker, or `next start`. Static export cannot use Server Actions, request-bound Route Handlers, cookies, or `next.config` redirects.
+Do not add a Node server, VPS, or `next start` for production. Static export cannot use Server Actions, request-bound Route Handlers, cookies, or `next.config` redirects.
 
 A lead form, when one is built, is a normal `<form method="post">` to `public/api/lead.php` (`mail()`). Secrets stay above the web root and out of git. Do not put mail or Telegram tokens in client JavaScript.
 
