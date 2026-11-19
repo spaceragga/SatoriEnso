@@ -4,20 +4,10 @@ export type Locale = (typeof locales)[number];
 
 export const defaultLocale: Locale = 'ru';
 
-export function localePath(locale: Locale): string {
-  return locale === defaultLocale ? '/' : `/${locale}/`;
-}
+export const localeStorageKey = 'locale';
 
-export function localeFromPath(pathname: string): Locale {
-  const first = pathname.split('/').filter(Boolean)[0];
+const knownLocales: ReadonlySet<string> = new Set(locales);
 
-  if (
-    first &&
-    first !== defaultLocale &&
-    (locales as readonly string[]).includes(first)
-  ) {
-    return first as Locale;
-  }
-
-  return defaultLocale;
+export function isLocale(value: string | null | undefined): value is Locale {
+  return value != null && knownLocales.has(value);
 }

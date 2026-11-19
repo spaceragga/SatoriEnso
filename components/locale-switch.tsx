@@ -1,37 +1,53 @@
-import Link from 'next/link';
-import { localePath, locales, type Locale } from '@/content/locale';
+'use client';
+
+import { useLayoutEffect } from 'react';
+import {
+  defaultLocale,
+  isLocale,
+  localeStorageKey,
+  locales,
+  type Locale,
+} from '@/content/locale';
 import { messages } from '@/content/messages';
 
-type LocaleSwitchProps = {
-  locale: Locale;
-};
+declare global {
+  interface Window {
+    setLocale?: (locale: Locale) => void;
+  }
+}
 
-export function LocaleSwitch({ locale }: LocaleSwitchProps) {
+function storedLocale(): Locale {
+  try {
+    const saved = localStorage.getItem(localeStorageKey);
+    return isLocale(saved) ? saved : defaultLocale;
+  } catch {
+    return defaultLocale;
+  }
+}
+
+export function LocaleSwitch() {
+  useLayoutEffect(() => {
+    window.setLocale?.(storedLocale());
+  }, []);
+
   return (
     <nav
-      aria-label={messages[locale].language}
+      data-locale-switch
+      aria-label={messages[defaultLocale].language}
       className="absolute top-6 right-6 flex gap-3 text-sm"
     >
-      {locales.map((item) => {
-        const current = item === locale;
-
-        return (
-          <Link
-            key={item}
-            href={localePath(item)}
-            hrefLang={item}
-            lang={item}
-            aria-current={current ? 'true' : undefined}
-            className={
-              current
-                ? 'font-medium text-ink'
-                : 'text-muted underline underline-offset-4'
-            }
-          >
-            {item.toUpperCase()}
-          </Link>
-        );
-      })}
+      {locales.map((item) => (
+        <button
+          key={item}
+          type="button"
+          data-locale-link={item}
+          lang={item}
+          className="cursor-pointer bg-transparent p-0 text-muted underline underline-offset-4"
+          onClick={() => window.setLocale?.(item)}
+        >
+          {item.toUpperCase()}
+        </button>
+      ))}
     </nav>
   );
 }

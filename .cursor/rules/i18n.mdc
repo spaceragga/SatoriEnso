@@ -5,14 +5,15 @@ alwaysApply: true
 
 # Locales
 
-Russian is the default (`/`). English is `/en/`. Static export has no middleware, so the locale is the URL, not a cookie or a header.
+Russian is the default. English is the same URL. The switch writes `localStorage` and swaps the copy in place. Static export has no middleware, so nothing on the server reads a cookie or a header.
 
-All UI copy lives in `content/messages.ts`. `en` is typed as the same keys as `ru`. A missing translation fails `typecheck`. Path helpers live in `content/locale.ts`.
+A path that starts with a non-default locale (`/en/...`) is remembered, then replaced with the same path without that prefix.
 
-- A new user-facing string is added to **both** locales in the same change. Do not ship a feature in one language
-- A new page is added under both `app/(ru)/` and `app/en/`. The page file only picks a locale and renders a shared component
+Copy is split by locale: `content/messages/ru.ts` and `content/messages/en.ts`. `en` is typed as the same keys as `ru`. A missing translation fails `typecheck`. `content/messages.ts` only assembles them.
+
+- A new user-facing string is added to **both** locale files in the same change. Do not ship a feature in one language
+- A new page is one route. Wrap its copy in `LocalePanels`. Do not add `app/en/`
 - Do not hardcode a sentence in JSX. Read it from `messages[locale]`
 - The brand name `Satori Enso` is not translated
 - Do not add next-intl, a locale cookie, or header negotiation
-- `html lang` is set by that locale's root layout: `app/(ru)/layout.tsx` and `app/en/layout.tsx`
-- Unknown URLs share one static 404. It must follow the locale in the requested path, so `/en/...` is English. Do not pin that page to Russian
+- `html lang` starts as Russian. The document script corrects it before paint

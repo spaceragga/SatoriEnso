@@ -5,14 +5,14 @@ alwaysApply: true
 
 # Satori Enso — agent context
 
-Marketing site for a one-person web studio (Belarus). UI copy is Russian by default and English at `/en/`. Node **>= 22.18**.
+Marketing site for a one-person web studio (Belarus). UI copy is Russian by default, English on the same URL. Node **>= 22.18**.
 
 ## Stack
 
 - Next.js 16 (App Router) + React 19 + TypeScript + Tailwind CSS 4
 - Static export: `output: 'export'`, `trailingSlash: true`
 - Content lives in TypeScript modules in the repo. No CMS, no database
-- UI copy is `content/messages.ts`: Russian (`/`) and English (`/en/`). See `i18n`
+- UI copy is `content/messages/ru.ts` and `content/messages/en.ts`. The switch does not change the URL. See `i18n`
 - Images are precompressed (AVIF/WebP) with width and height. The default `next/image` optimizer is off
 - Fonts via `next/font` (Cyrillic and Latin subsets), self-hosted at build time
 - README, rules, and commit messages are English
