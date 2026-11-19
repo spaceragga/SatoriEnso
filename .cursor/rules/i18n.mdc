@@ -1,0 +1,19 @@
+---
+description: UI copy ships in Russian and English in the same change
+alwaysApply: true
+---
+
+# Locales
+
+Russian is the default. English is the same URL. The switch writes `localStorage` and swaps the copy in place. Static export has no middleware, so nothing on the server reads a cookie or a header.
+
+A path that starts with a non-default locale (`/en/...`) is remembered, then replaced with the same path without that prefix.
+
+Copy is split by locale: `content/messages/ru.ts` and `content/messages/en.ts`. `en` is typed as the same keys as `ru`. A missing translation fails `typecheck`. `content/messages.ts` only assembles them.
+
+- A new user-facing string is added to **both** locale files in the same change. Do not ship a feature in one language
+- A new page is one route. Wrap its copy in `LocalePanels`. Do not add `app/en/`
+- Do not hardcode a sentence in JSX. Read it from `messages[locale]`
+- The brand name `Satori Enso` is not translated
+- Do not add next-intl, a locale cookie, or header negotiation
+- `html lang` starts as Russian. The document script corrects it before paint

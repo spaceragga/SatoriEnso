@@ -4,7 +4,7 @@ A web studio named after two Zen ideas: sudden, intuitive grasp (Satori) and the
 
 Satori Enso builds and repairs web and mobile products. A new site, shop, or app. A feature added to something that already runs: payments, booking, an account, an admin, a second language, a map, an integration. A fix in production, then monthly care so the product is not left alone.
 
-Based in Minsk. Work is remote. The site copy is Russian. This repository is the studio site.
+Based in Minsk. Work is remote. The site is Russian by default, with English on the same URL. This repository is the studio site.
 
 ## Stack
 

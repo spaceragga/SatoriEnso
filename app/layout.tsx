@@ -1,7 +1,10 @@
 import type { Metadata } from 'next';
 import { Golos_Text } from 'next/font/google';
 import type { ReactNode } from 'react';
-import { site } from '@/content/site';
+import { LocaleSwitch } from '@/components/locale-switch';
+import { defaultLocale } from '@/content/locale';
+import { messages, siteName } from '@/content/messages';
+import { localeDocumentCss, localeDocumentScript } from '@/lib/locale-document';
 import './globals.css';
 
 const golos = Golos_Text({
@@ -11,18 +14,21 @@ const golos = Golos_Text({
 });
 
 export const metadata: Metadata = {
-  title: site.name,
-  description: site.description,
+  title: siteName,
+  description: messages[defaultLocale].description,
 };
 
-type RootLayoutProps = {
-  children: ReactNode;
-};
-
-export default function RootLayout({ children }: RootLayoutProps) {
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="ru" className={golos.variable}>
-      <body className="mx-auto flex min-h-screen max-w-3xl flex-col justify-center bg-canvas px-6 font-sans text-ink antialiased">
+    <html
+      lang={defaultLocale}
+      className={golos.variable}
+      suppressHydrationWarning
+    >
+      <body className="relative mx-auto flex min-h-screen max-w-3xl flex-col justify-center bg-canvas px-6 font-sans text-ink antialiased">
+        <style dangerouslySetInnerHTML={{ __html: localeDocumentCss() }} />
+        <script dangerouslySetInnerHTML={{ __html: localeDocumentScript() }} />
+        <LocaleSwitch />
         {children}
       </body>
     </html>

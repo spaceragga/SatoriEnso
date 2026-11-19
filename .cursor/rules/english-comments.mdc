@@ -6,7 +6,7 @@ alwaysApply: false
 
 # English-only code comments
 
-Comments in source are **English**. UI strings in `app/` and `content/` stay Russian. README, rules, and other repo docs are English.
+Comments in source are **English**. UI strings live in `content/messages.ts` (Russian and English). README, rules, and other repo docs are English.
 
 - English for `//`, `/* */`, JSX comments, CSS comments, and JSDoc
 - A comment says **why**, not the obvious what

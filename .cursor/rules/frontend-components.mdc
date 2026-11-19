@@ -1,5 +1,5 @@
 ---
-description: Component layers, Russian copy, static-site rendering
+description: Component layers, locale copy, static-site rendering
 globs: "{app,components}/**/*.{ts,tsx}"
 alwaysApply: false
 ---
@@ -18,13 +18,13 @@ Promote to `components/ui/` only when used in **2+** places.
 
 - One component, one job. Split presentational UI from state when state grows
 - Props in, events out
-- UI copy is Russian, in the component or a `content/` module. No next-intl
+- UI copy comes from `messages[locale]` inside `LocalePanels`. No hardcoded sentences, no next-intl
 - Colocate a hook next to its component. Shared helpers go in `lib/`
 - Do not add `useMemo` / `useCallback` by default
 - Lists use stable `key`s (ids, not indexes)
 - Images are sized. No layout shift. No JS animation library
 - Tokens live in the Tailwind theme, not scattered hex in JSX
-- Client components only where the page reacts (a switcher). The lead form is a plain HTML form
+- Client components only where the page reacts. A locale switch is a button and does not change the URL. The lead form is a plain HTML form
 
 ```tsx
 // ❌ BAD — 400-line page with prices inlined in markup
