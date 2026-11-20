@@ -11,7 +11,7 @@ export function Solutions({ locale }: SolutionsProps) {
   const copy = solutions[locale];
 
   return (
-    <section id="solutions" className="mx-auto w-full max-w-5xl px-6 pb-20">
+    <section id="solutions" className="mx-auto w-full max-w-5xl px-6 pb-8">
       <ul className="grid border-t border-ink/10 sm:grid-cols-3">
         {copy.items.map((item, index) => (
           <li
