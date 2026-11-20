@@ -19,7 +19,7 @@ export function Projects({ locale }: ProjectsProps) {
   return (
     <section
       id="projects"
-      className="mx-auto w-full max-w-5xl px-6 py-16 sm:py-20"
+      className="mx-auto w-full max-w-5xl px-6 pt-16 pb-6 sm:pt-20 sm:pb-8"
     >
       <ul className="mx-auto flex w-full max-w-3xl flex-col gap-10 sm:gap-12">
         {copy.items.map((item, index) => {

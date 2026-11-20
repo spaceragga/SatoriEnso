@@ -1,6 +1,7 @@
 import { Hero } from '@/components/home/hero/hero';
 import { Manifesto } from '@/components/home/manifesto/manifesto';
 import { Projects } from '@/components/home/projects/projects';
+import { Solutions } from '@/components/home/solutions/solutions';
 import { LocalePanels } from '@/components/locale-panels';
 
 export function HomeSections() {
@@ -11,6 +12,7 @@ export function HomeSections() {
           <Hero locale={locale} />
           <Manifesto locale={locale} />
           <Projects locale={locale} />
+          <Solutions locale={locale} />
         </>
       )}
     />
