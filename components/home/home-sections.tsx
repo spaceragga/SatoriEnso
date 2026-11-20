@@ -4,6 +4,7 @@ import { Projects } from '@/components/home/projects/projects';
 import { Solutions } from '@/components/home/solutions/solutions';
 import { Capabilities } from '@/components/home/capabilities/capabilities';
 import { Design } from '@/components/home/design/design';
+import { Process } from '@/components/home/process/process';
 import { LocalePanels } from '@/components/locale-panels';
 
 export function HomeSections() {
@@ -17,6 +18,7 @@ export function HomeSections() {
           <Solutions locale={locale} />
           <Capabilities locale={locale} />
           <Design locale={locale} />
+          <Process locale={locale} />
         </>
       )}
     />
