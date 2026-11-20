@@ -1,20 +1,10 @@
 import { capabilities } from '@/content/home/capabilities';
 import type { Locale } from '@/content/locale';
-import type { ReactNode } from 'react';
-
 type CapabilitiesProps = {
   locale: Locale;
 };
 
-const screens: ReactNode[] = [
-  <Calendar key="calendar" />,
-  <Cart key="cart" />,
-  <Calculator key="calculator" />,
-  <Analytics key="analytics" />,
-  <Crm key="crm" />,
-  <MapScreen key="map" />,
-  <Integrations key="integrations" />,
-];
+type Marks = (typeof capabilities)['ru']['marks'];
 
 export function Capabilities({ locale }: CapabilitiesProps) {
   const copy = capabilities[locale];
@@ -47,7 +37,7 @@ export function Capabilities({ locale }: CapabilitiesProps) {
                     {name}
                   </figcaption>
                   <div className="h-28 overflow-hidden rounded-md bg-white text-ink shadow-sm">
-                    {screens[index] ?? null}
+                    <Screen index={index} marks={copy.marks} />
                   </div>
                 </figure>
                 {last ? null : (
@@ -67,16 +57,53 @@ export function Capabilities({ locale }: CapabilitiesProps) {
   );
 }
 
-function Calendar() {
+function Screen({ index, marks }: { index: number; marks: Marks }) {
+  switch (index) {
+    case 0:
+      return <Calendar month={marks.month} weekdays={marks.weekdays} />;
+    case 1:
+      return (
+        <Cart count={marks.cartCount} sum={marks.cartSum} pay={marks.pay} />
+      );
+    case 2:
+      return <Calculator />;
+    case 3:
+      return <Analytics growth={marks.growth} period={marks.period} />;
+    case 4:
+      return <Crm />;
+    case 5:
+      return <MapScreen minutes={marks.minutes} />;
+    case 6:
+      return (
+        <Integrations
+          site={marks.site}
+          crm={marks.crm}
+          api={marks.api}
+          payment={marks.payment}
+          mail={marks.mail}
+        />
+      );
+    default:
+      return null;
+  }
+}
+
+function Calendar({
+  month,
+  weekdays,
+}: {
+  month: string;
+  weekdays: readonly string[];
+}) {
   const days = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 14, 15, 16, 17, 18];
 
   return (
     <svg viewBox="0 0 80 112" className="h-full w-full">
       <rect width="80" height="20" fill="#f3f1ec" />
       <text x="8" y="14" fontSize="8" fill="#141414">
-        март
+        {month}
       </text>
-      {['п', 'в', 'с', 'ч', 'п'].map((day, index) => (
+      {weekdays.map((day, index) => (
         <text
           key={day + index}
           x={8 + index * 14}
@@ -116,7 +143,15 @@ function Calendar() {
   );
 }
 
-function Cart() {
+function Cart({
+  count,
+  sum,
+  pay,
+}: {
+  count: string;
+  sum: string;
+  pay: string;
+}) {
   return (
     <svg viewBox="0 0 80 112" className="h-full w-full">
       <rect
@@ -174,14 +209,14 @@ function Cart() {
         opacity="0.3"
       />
       <text x="8" y="66" fontSize="8" fill="#141414">
-        2 поз.
+        {count}
       </text>
       <text x="72" y="66" textAnchor="end" fontSize="8" fill="#141414">
-        86
+        {sum}
       </text>
       <rect x="8" y="78" width="64" height="18" rx="3" fill="#c4492c" />
       <text x="40" y="90" textAnchor="middle" fontSize="8" fill="#fff">
-        Оплатить
+        {pay}
       </text>
     </svg>
   );
@@ -209,14 +244,14 @@ function Calculator() {
   );
 }
 
-function Analytics() {
+function Analytics({ growth, period }: { growth: string; period: string }) {
   const bars = [28, 40, 34, 58, 46, 70];
 
   return (
     <svg viewBox="0 0 80 112" className="h-full w-full">
       <rect width="80" height="112" fill="#f7f8fb" />
       <text x="8" y="16" fontSize="8" fill="#141414">
-        +18%
+        {growth}
       </text>
       <text
         x="72"
@@ -226,7 +261,7 @@ function Analytics() {
         fill="#141414"
         opacity="0.45"
       >
-        30 дн.
+        {period}
       </text>
       {bars.map((height, index) => (
         <rect
@@ -281,7 +316,7 @@ function Crm() {
   );
 }
 
-function MapScreen() {
+function MapScreen({ minutes }: { minutes: string }) {
   return (
     <svg viewBox="0 0 80 112" className="h-full w-full">
       <rect width="80" height="112" fill="#e7eef6" />
@@ -303,13 +338,25 @@ function MapScreen() {
       <circle cx="48" cy="43" r="3" fill="#fff" />
       <rect x="8" y="92" width="36" height="12" rx="2" fill="#fff" />
       <text x="26" y="101" textAnchor="middle" fontSize="7" fill="#141414">
-        12 мин
+        {minutes}
       </text>
     </svg>
   );
 }
 
-function Integrations() {
+function Integrations({
+  site,
+  crm,
+  api,
+  payment,
+  mail,
+}: {
+  site: string;
+  crm: string;
+  api: string;
+  payment: string;
+  mail: string;
+}) {
   return (
     <svg viewBox="0 0 80 112" className="h-full w-full">
       <rect
@@ -322,7 +369,7 @@ function Integrations() {
         opacity="0.1"
       />
       <text x="19" y="20" textAnchor="middle" fontSize="6" fill="#141414">
-        сайт
+        {site}
       </text>
       <rect
         x="48"
@@ -334,11 +381,11 @@ function Integrations() {
         opacity="0.1"
       />
       <text x="61" y="20" textAnchor="middle" fontSize="6" fill="#141414">
-        CRM
+        {crm}
       </text>
       <rect x="27" y="49" width="26" height="14" rx="2" fill="#c4492c" />
       <text x="40" y="59" textAnchor="middle" fontSize="6" fill="#fff">
-        API
+        {api}
       </text>
       <rect
         x="6"
@@ -350,7 +397,7 @@ function Integrations() {
         opacity="0.1"
       />
       <text x="19" y="98" textAnchor="middle" fontSize="6" fill="#141414">
-        оплата
+        {payment}
       </text>
       <rect
         x="48"
@@ -362,7 +409,7 @@ function Integrations() {
         opacity="0.1"
       />
       <text x="61" y="98" textAnchor="middle" fontSize="6" fill="#141414">
-        почта
+        {mail}
       </text>
       <path
         d="M19 24v8c0 8 10 8 21 17M61 24v8c0 8-10 8-21 17M19 88v-8c0-8 10-8 21-17M61 88v-8c0-8-10-8-21-17"

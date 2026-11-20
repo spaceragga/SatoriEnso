@@ -6,11 +6,13 @@ type ProjectsProps = {
   locale: Locale;
 };
 
+const shotSize = { width: 960, height: 540 };
+
 const shots = [
-  { src: '/images/home/project-medicine.webp', width: 960, height: 540 },
-  { src: '/images/home/project-b2b.webp', width: 960, height: 540 },
-  { src: '/images/home/project-realty.webp', width: 960, height: 540 },
-  { src: '/images/home/project-education.webp', width: 960, height: 540 },
+  '/images/home/project-medicine.webp',
+  '/images/home/project-b2b.webp',
+  '/images/home/project-realty.webp',
+  '/images/home/project-education.webp',
 ] as const;
 
 export function Projects({ locale }: ProjectsProps) {
@@ -32,10 +34,10 @@ export function Projects({ locale }: ProjectsProps) {
               className="grid items-center gap-5 sm:grid-cols-[13rem_1fr] sm:gap-8"
             >
               <Image
-                src={shot.src}
+                src={shot}
                 alt=""
-                width={shot.width}
-                height={shot.height}
+                width={shotSize.width}
+                height={shotSize.height}
                 className="h-auto w-full rounded-xl"
               />
               <div>
