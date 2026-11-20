@@ -1,6 +1,5 @@
-import { HomePage } from '@/components/home-page';
-import { LocalePanels } from '@/components/locale-panels';
+import { HomeSections } from '@/components/home/home-sections';
 
 export default function Page() {
-  return <LocalePanels render={(locale) => <HomePage locale={locale} />} />;
+  return <HomeSections />;
 }

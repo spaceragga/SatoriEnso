@@ -34,19 +34,25 @@ export function LocaleSwitch() {
     <nav
       data-locale-switch
       aria-label={messages[defaultLocale].language}
-      className="absolute top-6 right-6 flex gap-3 text-sm"
+      className="flex items-center gap-1.5 text-sm"
     >
-      {locales.map((item) => (
-        <button
-          key={item}
-          type="button"
-          data-locale-link={item}
-          lang={item}
-          className="cursor-pointer bg-transparent p-0 text-muted underline underline-offset-4"
-          onClick={() => window.setLocale?.(item)}
-        >
-          {item.toUpperCase()}
-        </button>
+      {locales.map((item, index) => (
+        <span key={item} className="flex items-center gap-1.5">
+          {index > 0 ? (
+            <span className="text-muted" aria-hidden>
+              /
+            </span>
+          ) : null}
+          <button
+            type="button"
+            data-locale-link={item}
+            lang={item}
+            className="cursor-pointer bg-transparent p-0 tracking-wide text-muted uppercase"
+            onClick={() => window.setLocale?.(item)}
+          >
+            {item}
+          </button>
+        </span>
       ))}
     </nav>
   );
