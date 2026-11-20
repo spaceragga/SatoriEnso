@@ -12,7 +12,8 @@ export function Solutions({ locale }: SolutionsProps) {
 
   return (
     <section id="solutions" className="mx-auto w-full max-w-5xl px-6 pb-8">
-      <ul className="grid border-t border-ink/10 sm:grid-cols-3">
+      <h2 className="font-serif text-2xl tracking-tight">{copy.heading}</h2>
+      <ul className="mt-3 grid border-t border-ink/10 sm:grid-cols-3">
         {copy.items.map((item, index) => (
           <li
             key={item.title}
@@ -33,9 +34,9 @@ export function Solutions({ locale }: SolutionsProps) {
 }
 
 function columnClass(index: number, last: number) {
-  const rule = 'border-ink/10 py-8 sm:border-t-0 sm:border-l';
+  const rule = 'border-ink/10 pt-5 pb-8 sm:border-t-0 sm:border-l';
 
-  if (index === 0) return 'py-8 sm:pr-8';
+  if (index === 0) return 'pt-5 pb-8 sm:pr-8';
   if (index === last) return `${rule} border-t sm:pr-0 sm:pl-8`;
   return `${rule} border-t sm:px-8`;
 }

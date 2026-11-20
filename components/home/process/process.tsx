@@ -9,8 +9,12 @@ export function Process({ locale }: ProcessProps) {
   const copy = steps[locale];
 
   return (
-    <section id="process" className="mx-auto w-full max-w-6xl px-6 pt-2 pb-16">
-      <ol className="grid gap-8 border-t border-ink/10 pt-8 sm:grid-cols-5 sm:gap-4">
+    <section
+      id="process"
+      className="mx-auto w-full max-w-6xl border-t border-ink/10 px-6 pt-8 pb-16"
+    >
+      <h2 className="font-serif text-3xl tracking-tight">{copy.heading}</h2>
+      <ol className="mt-6 grid gap-8 sm:grid-cols-5 sm:gap-4">
         {copy.steps.map((step, index) => {
           const number = String(index + 1).padStart(2, '0');
 

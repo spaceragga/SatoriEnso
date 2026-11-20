@@ -1,6 +1,7 @@
 import type { Locale } from '@/content/locale';
 
 const ru = {
+  heading: 'С чего начать',
   items: [
     {
       title: 'Создать с нуля',
@@ -18,6 +19,7 @@ const ru = {
 };
 
 const en = {
+  heading: 'Where to start',
   items: [
     {
       title: 'Start from scratch',

@@ -1,6 +1,7 @@
 import type { Locale } from '@/content/locale';
 
 const ru = {
+  heading: 'Как идёт работа',
   steps: [
     {
       title: 'Погружение',
@@ -26,6 +27,7 @@ const ru = {
 };
 
 const en = {
+  heading: 'How the work goes',
   steps: [
     {
       title: 'Immersion',

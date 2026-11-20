@@ -49,7 +49,7 @@ export function Design({ locale }: DesignProps) {
   const copy = design[locale];
 
   return (
-    <section className="mx-auto flex w-full max-w-6xl flex-col gap-8 px-6 py-12 lg:flex-row lg:items-center lg:gap-10">
+    <section className="mx-auto flex w-full max-w-6xl flex-col gap-8 px-6 pt-12 pb-8 lg:flex-row lg:items-center lg:gap-10">
       <div className="max-w-[14rem] shrink-0">
         <h2 className="font-serif text-3xl leading-tight tracking-tight">
           {copy.title}
