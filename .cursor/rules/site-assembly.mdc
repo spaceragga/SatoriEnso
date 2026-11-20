@@ -1,0 +1,40 @@
+---
+description: How the marketing site is assembled — one page per PR, one block per commit
+alwaysApply: true
+---
+
+# Site assembly
+
+During the first build of the marketing site the user says when to commit and when to open a PR.
+
+- One pull request is one page
+- One commit is one new block on that page
+- Leave the work uncommitted until asked
+- Branch off `main`. Do not start the next page inside the current page's branch
+
+## Homepage
+
+Art direction is the third homepage mock: open Enso, serif wordmark, paper background, vermilion call to action, dark closing band. Sections differ on purpose. Do not introduce a section registry or a generic block renderer.
+
+`app/page.tsx` renders `HomeSections`. That component only stacks section components, in this order:
+
+1. `hero`
+2. `manifesto`
+3. `projects`
+4. `solutions`
+5. `capabilities`
+6. `design`
+7. `process`
+
+The closing band is the site footer: lead, form, contacts, and copyright. It is not a homepage section. The header action points at `/#contact` on that footer.
+
+Each block owns:
+
+- `components/home/<section>/<section>.tsx`
+- `content/home/<section>.ts` with `ru` and `en` of the same type
+
+`HomeSections` passes `locale` into every section. Wrap the stack in `LocalePanels` when the first section needs copy.
+
+Shared chrome lives in `components/site/` (header, nav, footer, logo). Its copy stays in `content/messages/`. Nav targets are `/#studio`, `/#projects`, `/#solutions`, `/#capabilities`, `/#process`. The header action points at `/#contact`.
+
+A task touches one section. Do not restyle the others in the same change. A section is done when both locales render and the desktop composition follows the mock.

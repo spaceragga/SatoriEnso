@@ -11,7 +11,7 @@ Build replaceable pieces, not page monoliths.
 | Level | Where | Examples |
 |-------|--------|----------|
 | **Primitives** | `components/ui/` | Button, Field |
-| **Sections** | `components/` | ServiceList, WorkStage |
+| **Sections** | `components/home/<section>/` | Hero, Projects |
 | **Pages** | `app/` | Compose only |
 
 Promote to `components/ui/` only when used in **2+** places.

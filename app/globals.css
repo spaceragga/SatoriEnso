@@ -2,13 +2,18 @@
 
 @theme inline {
   --font-sans: var(--font-ui), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-display), ui-serif, Georgia, serif;
   --color-canvas: var(--canvas);
   --color-ink: var(--ink);
   --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-inverse: var(--inverse);
 }
 
 :root {
-  --canvas: #f4f1ea;
+  --canvas: #f8f6f2;
   --ink: #141414;
   --muted: #5c574e;
+  --accent: #c4492c;
+  --inverse: #111111;
 }

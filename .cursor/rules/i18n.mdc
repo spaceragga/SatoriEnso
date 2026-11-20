@@ -11,7 +11,8 @@ A path that starts with a non-default locale (`/en/...`) is remembered, then rep
 
 Copy is split by locale: `content/messages/ru.ts` and `content/messages/en.ts`. `en` is typed as the same keys as `ru`. A missing translation fails `typecheck`. `content/messages.ts` only assembles them.
 
-- A new user-facing string is added to **both** locale files in the same change. Do not ship a feature in one language
+- A new user-facing string ships in **both** locales in the same change
+- Shared chrome stays in `content/messages/`. A page section keeps its own copy in `content/<page>/`
 - A new page is one route. Wrap its copy in `LocalePanels`. Do not add `app/en/`
 - Do not hardcode a sentence in JSX. Read it from `messages[locale]`
 - The brand name `Satori Enso` is not translated
