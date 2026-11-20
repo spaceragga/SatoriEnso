@@ -12,7 +12,7 @@ export function Hero({ locale }: HeroProps) {
   const copy = hero[locale];
 
   return (
-    <section className="mx-auto grid w-full max-w-7xl items-center gap-8 px-6 pt-6 pb-16 lg:grid-cols-[0.9fr_1.1fr] lg:gap-2 lg:pt-10 lg:pb-20">
+    <section className="mx-auto -mb-14 grid w-full max-w-7xl items-center gap-8 px-6 pt-6 pb-2 lg:grid-cols-[0.9fr_1.1fr] lg:gap-2 lg:pt-10 lg:pb-4">
       <div>
         <h1 className="max-w-xl font-serif text-4xl leading-[1.08] tracking-tight sm:text-5xl">
           {copy.title}
