@@ -1,4 +1,6 @@
-// Homepage blocks stack here, one component per section.
+import { Hero } from '@/components/home/hero/hero';
+import { LocalePanels } from '@/components/locale-panels';
+
 export function HomeSections() {
-  return null;
+  return <LocalePanels render={(locale) => <Hero locale={locale} />} />;
 }
